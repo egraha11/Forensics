@@ -1,0 +1,50 @@
+# Import required modules
+from pathlib import Path
+import os
+
+###############################################################
+# Part 1: Ask the user for the ABSOLUTE path to Bruce Wayne's 
+#         folder and save it to a string variable
+###############################################################
+
+folderPath = input("What is the path to the Bruce Wayne folder? " )
+
+###############################################################
+# Part 2: Convert that string to a Path variable
+###############################################################
+
+pathVariable = Path(folderPath)
+
+
+
+###############################################################
+# Part 3: List all files in the folder and display the name of
+#         each file to the user
+###############################################################
+
+stringVariable = str(pathVariable)
+files = os.listdir(stringVariable)
+
+for filename in files:
+    print("Found one of Bruce's Files... " + filename + "/n")
+
+
+###############################################################
+# Part 4: Open up each file and look for the string "Batman".
+#         If Batman is found, let the user know that 
+#         we have found Batman and what file we found the
+#         string in
+#
+#         HINT: Here is an example of looking for a substring
+#               within a string varible (we'll call the variable
+#               fileContents) (from previous lessons)
+#
+#         if "Batman" in fileContents:
+#            print("Found Batman!!")
+###############################################################
+
+for filename in files:
+    brucewaynefile = pathVariable/filename
+    fileContents = brucewaynefile.read_text()
+    if "Batman" in fileContents:
+            print("Found Batman!! He admitted it in " + str(filename))
